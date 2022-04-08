@@ -1,22 +1,22 @@
 alert("AL 1/2");
 //
 
-fetchText("/version.json");
+pathLog = "./log_git";
+pathJson = "./version.json";
 
-async function fetchText(filePath) {
-  let response = await fetch(filePath, "no-cache");
-  let data = await response.text();
-  alert(data);
-}
+//pathURL = "version.txt";
 
+const child = require('child_process');
 
+const output = child.execSync(`git log --format=%B%H----DELIMITER----`).toString('utf-8');
 
-//async function fetchText() {
-//  let response = await fetch('/version.json');
-//  let data = await response.text();
-//  alert(data);
-//}
+const commitsArray = output.split('----DELIMITER----\n').map(commit => {
+  const [message, sha] = commit.split('\n');
 
+  return { sha, message };
+}).filter(commit => Boolean(commit.sha));
+
+console.log({ commitsArray });
 
 ///
 alert("AL 2/2");
