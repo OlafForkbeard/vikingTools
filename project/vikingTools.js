@@ -64,42 +64,27 @@ vt.debugMode = false;
 //Prints to the console when true.
 vt.debugAlertMode = false;
 //Alerts all debug info.
-//Declare the logfile, and set node 0 to the starting log data. 
+
 //TODO Needs to pull version from somewhere else.
-vt.logfile = ["Initiated: " + Date.now()];
-vt.log = function(logDataInput) {
+
+//Declare the logfile, and set node 0 to the starting log data. 
+vt.webLog = ["Initiated: " + Date.now()];
+vt.log = function(logStringInput) {
   //Prefixing the current time to the log entry.
-  logDataOutput = Date.now() + ": " + logDataInput;
+  logDataOutput = Date.now() + ": " + logStringInput;
   //Log it into vt.log's logfile.
-  vt.logfile.push(logDataOutput);
-  //If any debug mode is on, ignore sent parameter for it, and just 
-  //debug every time.
-  if (debugMode === undefined || debugMode === false || debugMode === 0) {
-    alert("log() consoleDebugMode === undefined || consoleDebugMode === false || logDebugInput === 0");
-    //Take no action
-  } else if (debugMode === true || debugMode === 1) {
-    //Record logging data in both vt.logfile and console.
-    console.log(logDataOutput);
-  } else {
-    //Logdump, unknown error
-    vt.logfile.push("Unexpected Error, starting vt.logfile dump.");
-    for (let i = 0; i < vt.log.length(); i++) {
-      console.log(vt.logfile[i]);
-    }
-    vt.logfile.push("Unexpected Error, ending vt.logfile dump.");
-    alert("Unexpected Error, starting vt.logfile dump.");
-  }
+  vt.webLog.push(logDataOutput);
   //Catches for undefined and false sents. Defaults to debug off.
   if (debugAlertMode !== undefined || debugAlertMode !== false || debugAlertMode !== 0) {
     alert(logDataOutput);
   } else {
     //Logdump, unknown error
-    vt.logfile.push("Unexpected Error, vt.logfile dump Starting.");
+    vt.webLog.push("Unexpected Error, vt.webLog dump Starting.");
     for (let i = 0; i < vt.log.length(); i++) {
-      console.log(vt.logfile[i]);
+      console.log(vt.webLog[i]);
     }
-    vt.logfile.push("Unexpected Error, ending vt.logfile dump.");
-    alert("Unexpected Error, starting vt.logfile dump.");
+    vt.webLog.push("Unexpected Error, ending vt.webLog dump.");
+    alert("Unexpected Error, starting vt.webLog dump.");
   }
 }
 ///* log(); 
@@ -232,4 +217,16 @@ vt.writeHTML = function(elid, textInput, attemptsToFindFile) {
   }
 }
 ///* writeHTML()
+//=/==================================================/
+//====================================================/
+//* 
+///* 
+//=/==================================================/
+//====================================================/
+//* 
+///* 
+//=/==================================================/
+//====================================================/
+//* 
+///* 
 //=/==================================================/
